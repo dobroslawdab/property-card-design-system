@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { PropertyCard } from './PropertyCard';
 
 const meta = {
@@ -56,9 +55,6 @@ const meta = {
       description: 'Handler kliknięcia w kartę',
     },
   },
-  args: {
-    onClick: fn(),
-  },
 } satisfies Meta<typeof PropertyCard>;
 
 export default meta;
@@ -77,6 +73,7 @@ export const Default: Story = {
     comments: 120,
     realizations: 1023,
     description: 'Projekt domu Z357 D - Dom parterowy z przestronnym salonem i otwartą kuchnią',
+    onClick: () => console.log('Clicked on Z357 D'),
   },
 };
 
@@ -93,6 +90,7 @@ export const WithoutAdditionalArea: Story = {
     realizations: 756,
     description: 'Projekt domu Z442 A - Nowoczesny dom z tarasem i dużymi przeszkleniami',
     imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=365&h=227',
+    onClick: () => console.log('Clicked on Z442 A'),
   },
 };
 
@@ -109,6 +107,7 @@ export const LuxuryHouse: Story = {
     realizations: 892,
     description: 'Projekt domu Z358 B - Dwukondygnacyjny dom rodzinny z garażem i basenem',
     imageUrl: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=365&h=227',
+    onClick: () => console.log('Clicked on Z358 B'),
   },
 };
 
@@ -125,6 +124,7 @@ export const CompactHouse: Story = {
     realizations: 234,
     description: 'Projekt domu Z120 C - Kompaktowy dom parterowy dla młodej rodziny',
     imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=365&h=227',
+    onClick: () => console.log('Clicked on Z120 C'),
   },
 };
 
@@ -141,6 +141,7 @@ export const PopularProject: Story = {
     realizations: 2156,
     description: 'Projekt domu Z500 A - Najpopularniejszy projekt z naszej oferty, dom z poddaszem użytkowym',
     imageUrl: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=365&h=227',
+    onClick: () => console.log('Clicked on Z500 A'),
   },
 };
 
@@ -171,6 +172,7 @@ export const LoadingState: Story = {
     comments: 0,
     realizations: 0,
     description: 'Ładowanie danych projektu...',
+    onClick: undefined,
   },
   parameters: {
     docs: {
