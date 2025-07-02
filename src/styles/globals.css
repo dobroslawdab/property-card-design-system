@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design Tokens from Figma MCP */
+  --color-primary: #D9308A;
+  --color-secondary: #1B1B1B;
+  --color-neutral: #F4F3EF;
+  --color-background: #FFFFFF;
+  --color-text: #000000;
+  
+  /* Typography */
+  --font-family: 'Open Sans', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Spacing */
+  --card-width: 389px;
+  --card-height: 395px;
+  --image-width: 365.27px;
+  --image-height: 227px;
+  --tag-height: 40px;
+  
+  /* Typography Scales */
+  --font-size-caption: 10px;
+  --font-size-label: 13px;
+  --font-size-description: 14px;
+  --font-size-body: 18px;
+  --font-size-title: 18px;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -1.9%;
+  --letter-spacing-normal: -1.1%;
+}
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* PropertyCard specific styles */
+.property-card {
+  font-family: var(--font-family);
+}
+
+.property-card-tag-primary {
+  background-color: var(--color-primary);
+}
+
+.property-card-tag-secondary {
+  background-color: var(--color-secondary);
+}
+
+.property-card-tag-neutral {
+  background-color: var(--color-neutral);
+}
