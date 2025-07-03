@@ -1,143 +1,154 @@
-# 🏠 PropertyCard Design System
+# Z500 Property Card Design System
 
-Design system z PropertyCard komponentem wygenerowanym automatycznie z **Figma MCP**.
+🏠 **Pixel-perfect React component system** stworzony z Figma MCP dla Z500.pl
 
-## ✨ Features
+## 🎯 Features
 
-- 🎨 **Pixel-perfect** komponent PropertyCard z Figmy
-- 📱 **Storybook** documentation 
-- 🔧 **TypeScript** support
-- 🎯 **Design tokens** extracted z Figma API
-- 🖼️ **Real 3D renders** z Z500.pl
-- ⚡ **Open Sans** typography
-- 🔄 **Auto-generated** z Claude + MCP
+- ✅ **Pixel-perfect design** z Figmy
+- ✅ **Design Tokens system** - centralne zarządzanie stylami
+- ✅ **TypeScript support** - pełne typowanie
+- ✅ **Storybook documentation** - interaktywna dokumentacja
+- ✅ **Accessibility** - keyboard navigation, ARIA labels
+- ✅ **Responsive design** - mobile-first approach
+- ✅ **Dark mode support** - automatyczne przełączanie
+- ✅ **Animation system** - smooth hover effects
 
 ## 🚀 Quick Start
 
 ```bash
-# Clone repository
-git clone https://github.com/dobroslawdab/property-card-design-system.git
-cd property-card-design-system
-
-# Install dependencies
 npm install
-
-# Start Storybook
 npm run storybook
 ```
 
-**🎯 Storybook będzie dostępny na:** `http://localhost:6006`
+Otwórz http://localhost:6006 żeby zobaczyć komponenty w akcji!
 
-## 📖 Gdzie zobaczyć komponent?
+## 🎨 Design System
 
-Po uruchomieniu Storybook znajdziesz komponent w:
+### Design Tokens
 
-**Design System → PropertyCard**
+Centralny system zarządzania stylami:
 
-### 📚 Dostępne stories:
+```typescript
+import { designTokens } from '@z500/property-card-design-system';
 
-1. **Default** - Główny komponent z wizualizacją Z500
-2. **WithoutAdditionalArea** - Wariant bez dodatkowej powierzchni  
-3. **LuxuryHouse** - Luksusowy dom z wyższą ceną
-4. **CompactHouse** - Mały dom budżetowy
-5. **PopularProject** - Popularny projekt z wysokimi statystykami
-6. **NonInteractive** - Bez interakcji
-7. **LoadingState** - Stan ładowania
+// Kolory
+designTokens.colors.primary.main // #D9308A
+designTokens.colors.neutral.black // #1B1B1B
 
-### 🎮 Interactive Controls:
+// Spacing
+designTokens.spacing[4] // 12px
+designTokens.spacing[6] // 20px
 
-W Storybook możesz edytować:
-- **Tekst** (title, area, price, description)
-- **Liczby** (variants, comments, realizations)  
-- **URL obrazu** (imageUrl)
-- **Zdarzenia** (onClick)
-
-## 📁 Structure
-
-```
-├── src/
-│   ├── components/
-│   │   └── PropertyCard/
-│   │       ├── PropertyCard.tsx        # Main component
-│   │       ├── PropertyCard.stories.tsx # Storybook stories
-│   │       └── index.ts               # Exports
-│   └── styles/
-│       └── globals.css                # Design tokens
-├── .storybook/                        # Storybook config
-│   ├── main.ts
-│   └── preview.ts
-└── package.json
+// Typography
+designTokens.typography.fontSize.lg // 18px
+designTokens.typography.fontWeight.bold // 700
 ```
 
-## 🎨 Design Tokens
-
-Extracted automatically from Figma MCP:
-
-```css
-:root {
-  --color-primary: #D9308A;      /* Różowy tag */
-  --color-secondary: #1B1B1B;    /* Czarny tag */
-  --color-neutral: #F4F3EF;      /* Beżowy tag */
-  --font-family: 'Open Sans';    /* Typography */
-  --card-width: 389px;           /* Wymiary */
-  --card-height: 395px;
-}
-```
-
-## 🔗 Usage
+### PropertyCard Component
 
 ```tsx
-import { PropertyCard } from './src/components/PropertyCard';
+import { PropertyCard } from '@z500/property-card-design-system';
 
 <PropertyCard
-  imageUrl="https://image.z500.pl/..."
-  title="Z357 D"
-  area="177 m²"
+  id="z357der"
+  title="Z357 Der"
+  area="177"
   additionalArea="34 m²"
   price="650 tys. zł"
   variants={5}
   comments={120}
   realizations={1023}
-  description="Dom parterowy z przestronnym salonem..."
+  description="Dom parterowy z przestronnym salonem"
+  imageUrl="https://..."
   onClick={() => console.log('Clicked!')}
 />
 ```
 
+## 📚 Documentation
+
+- **Storybook**: Interaktywna dokumentacja komponentów
+- **Design Tokens**: Wizualna paleta kolorów, typografii, spacingu
+- **Actions**: Testowanie interakcji i eventów
+- **Controls**: Dynamiczne zmiany props w czasie rzeczywistym
+
 ## 🛠️ Development
 
 ```bash
-# Start development server  
-npm run dev
+# Install dependencies
+npm install
+
+# Start Storybook
+npm run storybook
 
 # Build for production
 npm run build
 
-# Lint code
-npm run lint
-
-# Build Storybook for deployment
-npm run build-storybook
+# Run tests
+npm test
 ```
 
-## 🚀 Deployment
+## 🎭 Available Stories
 
-Storybook może być zdeployowany na:
-- **Vercel** - `npm run build-storybook`
-- **Netlify** - Auto-deploy z GitHub
-- **GitHub Pages** - Static hosting
-- **Chromatic** - Visual testing
+- **Design System/PropertyCard** - Główny komponent
+- **Design System/Design Tokens** - Paleta tokenów
+  - Colors - Kolory brand, neutral, semantic
+  - Typography - Skala typograficzna
+  - Spacing - Odstępy i padding
+  - Shadows - Cienie komponentów
+  - Border Radius - Zaokrąglenia
 
-## 🔄 MCP Workflow
+## 🎨 Figma Integration
 
-Ten projekt został wygenerowany z:
+**Design File**: https://www.figma.com/design/VPq0dOwuuLHG9kLUXgMeJ9/DES_z500?node-id=12-42
 
-1. **Figma MCP** - Extract design tokens i layout
-2. **Claude AI** - Generate React component  
-3. **GitHub MCP** - Auto-commit do repository
-4. **Storybook** - Interactive documentation
+Komponenty są pixel-perfect zgodne z designem z Figmy. Wszystkie wartości (kolory, spacing, typography) zostały wyciągnięte bezpośrednio z Figma MCP.
+
+## 🏗️ Architecture
+
+```
+src/
+├── components/          # React components
+│   └── PropertyCard/    # PropertyCard component
+├── tokens/              # Design tokens system
+├── stories/             # Storybook stories
+└── index.ts            # Main exports
+```
+
+## 🎯 Usage Patterns
+
+### Custom Styling z Design Tokens
+
+```css
+.my-component {
+  background: var(--color-primary, #D9308A);
+  padding: var(--spacing-4, 12px);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-sm, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+}
+```
+
+### TypeScript Integration
+
+```typescript
+import type { PropertyCardProps } from '@z500/property-card-design-system';
+
+const myProps: PropertyCardProps = {
+  // Full type safety!
+};
+```
+
+## 🌟 Best Practices
+
+1. **Zawsze używaj Design Tokens** - nie hardcoduj wartości
+2. **Testuj w Storybook** - sprawdź wszystkie warianty
+3. **Keyboard accessibility** - wszystkie interakcje dostępne z klawiatury
+4. **Responsive design** - testuj na różnych rozmiarach ekranu
+5. **Performance** - lazy loading obrazów, optymalizowane animacje
+
+## 📝 License
+
+MIT © Z500 Design System
 
 ---
 
-Generated with ❤️ using **Figma MCP** + **Claude AI**
-
-**Repository:** https://github.com/dobroslawdab/property-card-design-system
+**Built with ❤️ using Figma MCP, Storybook, and Claude AI**

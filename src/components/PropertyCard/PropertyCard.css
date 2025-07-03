@@ -1,14 +1,20 @@
-/* PropertyCard Component Styles */
+/* PropertyCard Component - Używa Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+/* CSS Custom Properties z Design Tokens */
 .property-card {
+  /* Użycie design tokens przez CSS variables */
   display: flex;
   flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  background: var(--color-bg, #FFFFFF);
+  border-radius: var(--radius-md, 8px);
   overflow: hidden;
-  transition: all 250ms ease-in-out;
-  width: 365px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  width: 368.46px;
+  padding: var(--spacing-4, 12px);
+  gap: var(--spacing-3, 10px);
+  box-shadow: var(--shadow-sm, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+  transition: all var(--transition, 250ms ease-in-out);
+  font-family: var(--font-family, 'Inter', sans-serif);
 }
 
 .property-card--interactive {
@@ -16,201 +22,176 @@
 }
 
 .property-card--interactive:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
   transform: translateY(-2px);
 }
 
 .property-card--interactive:focus {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-primary, #D9308A);
   outline-offset: 2px;
 }
 
-.property-card--interactive:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-
-/* Image Container */
+/* Obraz */
 .property-card__image-container {
-  position: relative;
+  width: 100%;
   height: 227px;
   overflow: hidden;
+  border-radius: var(--radius-sm, 4px);
 }
 
 .property-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 250ms ease-in-out;
+  display: block;
+  transition: transform var(--transition, 250ms ease-in-out);
 }
 
 .property-card--interactive:hover .property-card__image {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
-/* Stats Overlay */
-.property-card__stats-overlay {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+/* Tagi poziome */
+.property-card__tags {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.property-card__stat {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  border-radius: 6px;
-  padding: 4px 8px;
-  min-width: 48px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  gap: 0;
+  width: 100%;
 }
 
-.property-card__stat-value {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #1e293b;
-}
-
-.property-card__stat-label {
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: #64748b;
-  text-align: center;
-}
-
-/* Content */
-.property-card__content {
-  padding: 16px;
+.property-card__tag {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 8px 12px;
+  transition: all 150ms ease-in-out;
+}
+
+.property-card__tag--primary {
+  background-color: var(--color-primary, #D9308A);
+  border-radius: var(--radius-sm, 4px) 0 0 var(--radius-sm, 4px);
+  flex-shrink: 0;
+}
+
+.property-card__tag--secondary {
+  background-color: var(--color-secondary, #1B1B1B);
+  flex-shrink: 0;
+}
+
+.property-card__tag--neutral {
+  background-color: var(--color-neutral, #F4F3EF);
+  border-radius: 0 var(--radius-sm, 4px) var(--radius-sm, 4px) 0;
   flex: 1;
 }
 
-/* Header */
-.property-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.property-card__title {
+.property-card__tag-text {
+  font-family: var(--font-family, 'Inter', sans-serif);
   font-size: 18px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #1e293b;
-  margin: 0;
-  flex: 1;
-}
-
-.property-card__area {
-  font-size: 14px;
-  font-weight: 600;
-  color: #2563eb;
-  text-align: right;
-  line-height: 1.2;
+  line-height: 1.21;
+  letter-spacing: -0.011em;
+  text-align: center;
   white-space: nowrap;
 }
 
-.property-card__additional-area {
-  display: block;
-  font-size: 12px;
-  font-weight: 500;
-  color: #64748b;
-  margin-top: 2px;
+.property-card__tag--primary .property-card__tag-text {
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: -0.019em;
 }
 
-/* Description */
+.property-card__tag--secondary .property-card__tag-text {
+  color: #FFFFFF;
+  font-weight: 300;
+}
+
+.property-card__tag--neutral .property-card__tag-text {
+  color: var(--color-text, #000000);
+  font-weight: 300;
+}
+
+/* Opis */
 .property-card__description {
+  font-family: var(--font-family, 'Inter', sans-serif);
+  font-weight: 300;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #64748b;
+  line-height: 1.21;
+  letter-spacing: -0.011em;
+  color: var(--color-text, #000000);
   margin: 0;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  text-align: left;
 }
 
-/* Footer */
-.property-card__footer {
+/* Statystyki poziome */
+.property-card__stats {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  margin-top: auto;
+  gap: 20px;
 }
 
-.property-card__price {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1e293b;
-  line-height: 1.2;
+.property-card__stat-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.property-card__stat-label {
+  font-family: var(--font-family, 'Inter', sans-serif);
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 1.21;
+  letter-spacing: -0.011em;
+  color: var(--color-text, #000000);
+  white-space: nowrap;
+}
+
+.property-card__stat-value {
+  font-family: var(--font-family, 'Inter', sans-serif);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.21;
+  letter-spacing: -0.011em;
+  color: var(--color-text, #000000);
+  white-space: nowrap;
+}
+
+/* Hover efekty używające design tokens */
+.property-card--interactive:hover .property-card__tag--primary {
+  background-color: var(--color-primary-light, #E73C96);
+}
+
+.property-card--interactive:hover .property-card__stat-value {
+  color: var(--color-primary, #D9308A);
+}
+
+/* Responsywność */
+@media (max-width: 480px) {
   .property-card {
     width: 100%;
-    max-width: 365px;
+    max-width: 368.46px;
   }
   
-  .property-card__header {
+  .property-card__tags {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .property-card__tag {
+    width: 100%;
+    border-radius: var(--radius-sm, 4px) !important;
+  }
+  
+  .property-card__stats {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
-  .property-card__area {
-    text-align: left;
-  }
-  
-  .property-card__stats-overlay {
-    top: 8px;
-    right: 8px;
-    gap: 2px;
-  }
-  
-  .property-card__stat {
-    padding: 2px 6px;
-    min-width: 40px;
-  }
-  
-  .property-card__stat-value {
-    font-size: 11px;
-  }
-  
-  .property-card__stat-label {
-    font-size: 9px;
-  }
 }
 
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-  .property-card {
-    border-width: 2px;
-  }
-  
-  .property-card--interactive:focus {
-    outline-width: 3px;
-  }
-  
-  .property-card__stats-overlay {
-    background: rgba(255, 255, 255, 1);
-  }
-}
-
-/* Reduced Motion Support */
+/* Accessibility - zmniejszone animacje */
 @media (prefers-reduced-motion: reduce) {
   .property-card,
   .property-card__image {
@@ -226,46 +207,12 @@
   }
 }
 
-/* Dark Mode Support */
+/* Dark mode support używając design tokens */
 @media (prefers-color-scheme: dark) {
   .property-card {
-    background: #0f172a;
-    border-color: #334155;
-  }
-  
-  .property-card--interactive:hover {
-    border-color: #475569;
-  }
-  
-  .property-card__title {
-    color: #f1f5f9;
-  }
-  
-  .property-card__description {
-    color: #94a3b8;
-  }
-  
-  .property-card__price {
-    color: #f1f5f9;
-  }
-  
-  .property-card__area {
-    color: #3b82f6;
-  }
-  
-  .property-card__additional-area {
-    color: #94a3b8;
-  }
-  
-  .property-card__stat {
-    background: rgba(15, 23, 42, 0.95);
-  }
-  
-  .property-card__stat-value {
-    color: #f1f5f9;
-  }
-  
-  .property-card__stat-label {
-    color: #94a3b8;
+    --color-bg: #1a1a1a;
+    --color-text: #e5e5e5;
+    --color-neutral: #2a2a2a;
+    border: 1px solid #333;
   }
 }
