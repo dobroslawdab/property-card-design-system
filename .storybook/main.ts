@@ -9,6 +9,7 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    '@storybook/addon-actions', // ← Dodane bezpośrednio!
     '@storybook/addon-onboarding',
   ],
   framework: {
