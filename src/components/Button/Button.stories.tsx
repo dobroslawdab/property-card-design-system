@@ -10,7 +10,7 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Button komponent zbudowany z naszymi Design Tokens. Obsługuje różne warianty, rozmiary, ikony i stany loading.',
+        component: 'Button component built with our Design Tokens. Supports different variants, sizes, icons and loading states.',
       },
     },
   },
@@ -19,28 +19,32 @@ const meta = {
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'outline', 'ghost', 'destructive', 'link'],
-      description: 'Wariant wizualny buttona',
+      description: 'Visual variant of button',
     },
     size: {
       control: 'select', 
       options: ['sm', 'md', 'lg', 'icon'],
-      description: 'Rozmiar buttona',
-    },
-    loading: {
-      control: 'boolean',
-      description: 'Stan ładowania z spinnerem',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Stan wyłączony',
+      description: 'Size of button',
     },
     children: {
       control: 'text',
-      description: 'Tekst buttona',
+      description: 'Button content',
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Loading state',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disabled state',
+    },
+    asChild: {
+      control: 'boolean',
+      description: 'Render as child component (e.g. Link)',
     },
     onClick: {
       action: 'button-clicked',
-      description: 'Handler kliknięcia',
+      description: 'Click handler',
     },
   },
 } satisfies Meta<typeof Button>;
@@ -51,7 +55,7 @@ type Story = StoryObj<typeof meta>;
 // Default story
 export const Default: Story = {
   args: {
-    children: 'Click me',
+    children: 'Button',
     onClick: action('button-clicked'),
   },
 };
@@ -60,18 +64,18 @@ export const Default: Story = {
 export const Variants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button variant="primary" onClick={action('primary-clicked')}>Primary</Button>
-      <Button variant="secondary" onClick={action('secondary-clicked')}>Secondary</Button>
-      <Button variant="outline" onClick={action('outline-clicked')}>Outline</Button>
-      <Button variant="ghost" onClick={action('ghost-clicked')}>Ghost</Button>
-      <Button variant="destructive" onClick={action('destructive-clicked')}>Destructive</Button>
-      <Button variant="link" onClick={action('link-clicked')}>Link</Button>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="link">Link</Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Wszystkie dostępne warianty buttona z naszymi design tokens.',
+        story: 'All available button variants with our design tokens.',
       },
     },
   },
@@ -81,18 +85,18 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-      <Button size="sm" onClick={action('small-clicked')}>Small</Button>
-      <Button size="md" onClick={action('medium-clicked')}>Medium</Button>
-      <Button size="lg" onClick={action('large-clicked')}>Large</Button>
-      <Button size="icon" onClick={action('icon-clicked')}>
-        <Heart />
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+      <Button size="icon">
+        <Plus />
       </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Różne rozmiary buttonów, włącznie z wariantem tylko z ikoną.',
+        story: 'Different button sizes - small, medium, large and icon-only.',
       },
     },
   },
@@ -102,24 +106,20 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button leftIcon={<Heart />} onClick={action('left-icon-clicked')}>
+      <Button leftIcon={<Download />}>Download</Button>
+      <Button rightIcon={<ArrowRight />}>Continue</Button>
+      <Button leftIcon={<Heart />} rightIcon={<ArrowRight />}>
         Add to favorites
       </Button>
-      <Button rightIcon={<ArrowRight />} onClick={action('right-icon-clicked')}>
-        Continue
-      </Button>
-      <Button leftIcon={<Download />} rightIcon={<ArrowRight />} onClick={action('both-icons-clicked')}>
-        Download & Continue
-      </Button>
-      <Button variant="outline" leftIcon={<Plus />} onClick={action('outline-icon-clicked')}>
-        Add new
+      <Button variant="outline" leftIcon={<Plus />}>
+        Add item
       </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Buttony z ikonami po lewej i prawej stronie. Ikony automatycznie mają odpowiedni rozmiar.',
+        story: 'Buttons with icons on left, right or both sides.',
       },
     },
   },
@@ -129,16 +129,22 @@ export const WithIcons: Story = {
 export const LoadingStates: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button loading onClick={action('loading-primary')}>Loading...</Button>
-      <Button variant="outline" loading onClick={action('loading-outline')}>Saving...</Button>
-      <Button variant="secondary" loading onClick={action('loading-secondary')}>Processing...</Button>
-      <Button size="icon" loading onClick={action('loading-icon')} />
+      <Button loading>Loading...</Button>
+      <Button variant="secondary" loading>
+        Please wait
+      </Button>
+      <Button variant="outline" loading leftIcon={<Download />}>
+        Downloading
+      </Button>
+      <Button size="icon" loading>
+        <Plus />
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Stany ładowania z animowanym spinnerem. Buttony są automatycznie wyłączone podczas ładowania.',
+        story: 'Buttons in loading state with spinner animation.',
       },
     },
   },
@@ -148,16 +154,39 @@ export const LoadingStates: Story = {
 export const DisabledStates: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button disabled onClick={action('disabled-primary')}>Disabled Primary</Button>
-      <Button variant="outline" disabled onClick={action('disabled-outline')}>Disabled Outline</Button>
-      <Button variant="ghost" disabled onClick={action('disabled-ghost')}>Disabled Ghost</Button>
-      <Button variant="destructive" disabled onClick={action('disabled-destructive')}>Disabled Destructive</Button>
+      <Button disabled>Disabled</Button>
+      <Button variant="secondary" disabled>
+        Disabled
+      </Button>
+      <Button variant="outline" disabled leftIcon={<Heart />}>
+        Disabled with icon
+      </Button>
+      <Button size="icon" disabled>
+        <Plus />
+      </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Wyłączone buttony z obniżoną przezroczystością i brakiem interakcji.',
+        story: 'Disabled buttons with reduced opacity and no interactions.',
+      },
+    },
+  },
+};
+
+// Interactive example
+export const Interactive: Story = {
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Click me!',
+    onClick: action('button-clicked'),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive button for testing different props in controls panel.',
       },
     },
   },

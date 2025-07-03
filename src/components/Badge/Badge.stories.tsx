@@ -10,7 +10,7 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Badge komponent do wyświetlania statusów, kategorii i etykiet. Zbudowany z naszymi Design Tokens i dostępny w wielu wariantach.',
+        component: 'Badge component for displaying statuses, categories and labels. Built with our Design Tokens and available in multiple variants.',
       },
     },
   },
@@ -19,28 +19,28 @@ const meta = {
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'success', 'warning', 'error', 'info', 'outline', 'ghost'],
-      description: 'Wariant wizualny badge',
+      description: 'Visual variant of badge',
     },
     size: {
       control: 'select', 
       options: ['sm', 'md', 'lg'],
-      description: 'Rozmiar badge',
+      description: 'Size of badge',
     },
     children: {
       control: 'text',
-      description: 'Zawartość badge',
+      description: 'Badge content',
     },
     dot: {
       control: 'boolean',
-      description: 'Pokaż kropkę wskaźnika',
+      description: 'Show indicator dot',
     },
     onClick: {
       action: 'badge-clicked',
-      description: 'Handler kliknięcia',
+      description: 'Click handler',
     },
     onRemove: {
       action: 'badge-removed',
-      description: 'Handler usunięcia',
+      description: 'Remove handler',
     },
   },
 } satisfies Meta<typeof Badge>;
@@ -72,7 +72,7 @@ export const Variants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Wszystkie dostępne warianty badge z naszymi design tokens.',
+        story: 'All available badge variants with our design tokens.',
       },
     },
   },
@@ -90,7 +90,7 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Różne rozmiary badge - small, medium i large.',
+        story: 'Different badge sizes - small, medium and large.',
       },
     },
   },
@@ -111,7 +111,7 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Badge z ikonami do lepszego komunikowania statusu.',
+        story: 'Badges with icons for better status communication.',
       },
     },
   },
@@ -130,7 +130,7 @@ export const WithDots: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Badge z kropką wskaźnika do oznaczania statusów.',
+        story: 'Badges with indicator dots for status display.',
       },
     },
   },
@@ -165,7 +165,7 @@ export const ClickableBadges: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Badge które można klikać - automatycznie otrzymują hover effects i cursor pointer.',
+        story: 'Clickable badges - automatically get hover effects and cursor pointer.',
       },
     },
   },
@@ -205,7 +205,7 @@ export const RemovableBadges: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Badge z przyciskiem usunięcia - idealny do tagów i filtrów.',
+        story: 'Badges with remove button - perfect for tags and filters.',
       },
     },
   },

@@ -11,7 +11,7 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Input komponent z pełną integracją Design Tokens. Obsługuje różne warianty, rozmiary, ikony i stany walidacji.',
+        component: 'Input component with full Design Tokens integration. Supports different variants, sizes, icons and validation states.',
       },
     },
   },
@@ -20,41 +20,41 @@ const meta = {
     variant: {
       control: 'select',
       options: ['default', 'filled', 'ghost'],
-      description: 'Wariant wizualny inputa',
+      description: 'Visual variant of input',
     },
     size: {
       control: 'select', 
       options: ['sm', 'md', 'lg'],
-      description: 'Rozmiar inputa',
+      description: 'Size of input',
     },
     state: {
       control: 'select',
       options: ['default', 'error', 'success'],
-      description: 'Stan walidacji',
+      description: 'Validation state',
     },
     label: {
       control: 'text',
-      description: 'Etykieta inputa',
+      description: 'Input label',
     },
     placeholder: {
       control: 'text',
-      description: 'Tekst zastępczy',
+      description: 'Placeholder text',
     },
     helperText: {
       control: 'text',
-      description: 'Tekst pomocniczy',
+      description: 'Helper text',
     },
     error: {
       control: 'text',
-      description: 'Komunikat błędu',
+      description: 'Error message',
     },
     success: {
       control: 'text',
-      description: 'Komunikat sukcesu',
+      description: 'Success message',
     },
     disabled: {
       control: 'boolean',
-      description: 'Stan wyłączony',
+      description: 'Disabled state',
     },
   },
 } satisfies Meta<typeof Input>;
@@ -95,7 +95,7 @@ export const Variants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Różne warianty wizualne inputa - default, filled i ghost.',
+        story: 'Different visual variants - default, filled and ghost.',
       },
     },
   },
@@ -125,7 +125,7 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Różne rozmiary inputa - small, medium i large.',
+        story: 'Different input sizes - small, medium and large.',
       },
     },
   },
@@ -158,7 +158,7 @@ export const WithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Inputy z ikonami po lewej i prawej stronie. Ikony automatycznie dostosowują padding.',
+        story: 'Inputs with icons on left and right side. Icons automatically adjust padding.',
       },
     },
   },
@@ -190,7 +190,7 @@ export const ValidationStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Różne stany walidacji - default z helper text, error i success.',
+        story: 'Different validation states - default with helper text, error and success.',
       },
     },
   },
@@ -217,7 +217,7 @@ export const DisabledState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Wyłączone inputy z obniżoną przezroczystością i brakiem interakcji.',
+        story: 'Disabled inputs with reduced opacity and no interactions.',
       },
     },
   },
