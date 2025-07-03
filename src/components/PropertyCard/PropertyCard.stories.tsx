@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { within, userEvent, expect } from '@storybook/test';
 import { PropertyCard } from './PropertyCard';
 
 const meta = {
@@ -52,7 +53,7 @@ const meta = {
       description: 'URL do wizualizacji 3D',
     },
     onClick: {
-      action: 'clicked',
+      action: 'property-card-clicked',
       description: 'Handler kliknięcia w kartę',
     },
   },
@@ -78,7 +79,105 @@ export const Default: Story = {
   },
 };
 
-// Wariant bez dodatkowej powierzchni
+// Story z automatycznymi testami interakcji (jak na obrazku 1)
+export const WithInteractions: Story = {
+  args: {
+    ...Default.args,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    
+    // Znajdź kartę
+    const propertyCard = canvas.getByTestId('property-card-z357der');
+    
+    // Sprawdź czy karta istnieje
+    await expect(propertyCard).toBeInTheDocument();
+    
+    // Sprawdź czy ma klasę interactive
+    await expect(propertyCard).toHaveClass('property-card--interactive');
+    
+    // Symuluj hover
+    await userEvent.hover(propertyCard);
+    
+    // Sprawdź czy onClick jest funkcją
+    await expect(args.onClick).toBeDefined();
+    
+    // Kliknij w kartę
+    await userEvent.click(propertyCard);
+    
+    // Sprawdź czy funkcja została wywołana
+    await expect(args.onClick).toHaveBeenCalled();
+    
+    // Sprawdź elementy na karcie
+    await expect(canvas.getByText('Z357 Der')).toBeInTheDocument();
+    await expect(canvas.getByText('177+ 34 m²')).toBeInTheDocument();
+    await expect(canvas.getByText('650 tys. zł')).toBeInTheDocument();
+    await expect(canvas.getByText('5')).toBeInTheDocument();
+    await expect(canvas.getByText('120')).toBeInTheDocument();
+    await expect(canvas.getByText('1,023')).toBeInTheDocument();
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Story z automatycznymi testami interakcji. Sprawdza hover, click, i zawartość komponentu.',
+      },
+    },
+  },
+};
+
+// Keyboard navigation test
+export const KeyboardNavigation: Story = {
+  args: {
+    ...Default.args,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const propertyCard = canvas.getByTestId('property-card-z357der');
+    
+    // Focus na kartę
+    propertyCard.focus();
+    await expect(propertyCard).toHaveFocus();
+    
+    // Wciśnij Enter
+    await userEvent.keyboard('{Enter}');
+    await expect(args.onClick).toHaveBeenCalled();
+    
+    // Reset mock
+    (args.onClick as any).mockClear();
+    
+    // Wciśnij Spację
+    await userEvent.keyboard(' ');
+    await expect(args.onClick).toHaveBeenCalled();
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Test nawigacji klawiaturą - Enter i Spacja powinny wywołać onClick.',
+      },
+    },
+  },
+};
+
+// Visual regression testing story
+export const VisualTest: Story = {
+  args: {
+    ...Default.args,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Story do visual testing - porównuje screenshots między wersjami.',
+      },
+    },
+    // Parametry dla Chromatic visual testing
+    chromatic: {
+      viewports: [320, 768, 1200],
+      delay: 300,
+    },
+  },
+};
+
+// Pozostałe stories...
 export const WithoutAdditionalArea: Story = {
   args: {
     ...Default.args,
@@ -96,7 +195,6 @@ export const WithoutAdditionalArea: Story = {
   },
 };
 
-// Luksusowy dom - wyższa cena
 export const LuxuryHouse: Story = {
   args: {
     ...Default.args,
@@ -114,7 +212,6 @@ export const LuxuryHouse: Story = {
   },
 };
 
-// Mały dom - budżetowy
 export const CompactHouse: Story = {
   args: {
     ...Default.args,
@@ -132,7 +229,6 @@ export const CompactHouse: Story = {
   },
 };
 
-// Popularny projekt - wysokie statystyki
 export const PopularProject: Story = {
   args: {
     ...Default.args,
@@ -150,7 +246,6 @@ export const PopularProject: Story = {
   },
 };
 
-// Interactive state - bez onClick
 export const NonInteractive: Story = {
   args: {
     ...Default.args,
