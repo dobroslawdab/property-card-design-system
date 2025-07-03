@@ -1,77 +1,50 @@
-# Z500 Property Card Design System
+# Z500 Property Card Design System 🏠✨
 
-🏠 **Pixel-perfect React component system** stworzony z Figma MCP dla Z500.pl
+> Pixel-perfect design system built from Figma designs with React, TypeScript, and Storybook
 
-## 🎯 Features
+## 🌐 **Live Storybook**
+**[View Design System →](https://dobroslawdab.github.io/property-card-design-system/)**
 
-- ✅ **Pixel-perfect design** z Figmy
-- ✅ **Design Tokens system** - centralne zarządzanie stylami
-- ✅ **TypeScript support** - pełne typowanie
-- ✅ **Storybook documentation** - interaktywna dokumentacja
-- ✅ **Accessibility** - keyboard navigation, ARIA labels
-- ✅ **Responsive design** - mobile-first approach
-- ✅ **Dark mode support** - automatyczne przełączanie
-- ✅ **Animation system** - smooth hover effects
+## 🎯 **Components**
 
-## 🚀 Quick Start
+### 🏡 PropertyCard
+Pixel-perfect implementation from Figma with:
+- Horizontal tag layout (title, area, price)
+- Interactive hover states
+- Keyboard navigation
+- Design tokens from Figma
 
-```bash
-npm install
-npm run storybook
-```
+### 🔘 Button  
+CVA variants with Radix UI integration:
+- 6 variants: primary, secondary, outline, ghost, destructive, link
+- 4 sizes: sm, md, lg, icon
+- Loading states with spinner
+- Left/right icons support
 
-Otwórz http://localhost:6006 żeby zobaczyć komponenty w akcji!
+### 🏷️ Badge
+Flexible badge component:
+- 8 variants with semantic colors
+- Clickable and removable options
+- Dot indicators
+- Icon support
 
-## 🎨 Design System
+### 📝 Input
+Form input with validation:
+- 3 variants: default, filled, ghost
+- 3 sizes with consistent padding
+- Error/success states
+- Left/right icon support
 
-### Design Tokens
+## 🛠️ **Tech Stack**
 
-Centralny system zarządzania stylami:
+- **React 18** + TypeScript
+- **Storybook 7** for component documentation
+- **Class Variance Authority (CVA)** for variants
+- **Radix UI** for accessibility primitives  
+- **CSS Custom Properties** for design tokens
+- **Vite** for fast development
 
-```typescript
-import { designTokens } from '@z500/property-card-design-system';
-
-// Kolory
-designTokens.colors.primary.main // #D9308A
-designTokens.colors.neutral.black // #1B1B1B
-
-// Spacing
-designTokens.spacing[4] // 12px
-designTokens.spacing[6] // 20px
-
-// Typography
-designTokens.typography.fontSize.lg // 18px
-designTokens.typography.fontWeight.bold // 700
-```
-
-### PropertyCard Component
-
-```tsx
-import { PropertyCard } from '@z500/property-card-design-system';
-
-<PropertyCard
-  id="z357der"
-  title="Z357 Der"
-  area="177"
-  additionalArea="34 m²"
-  price="650 tys. zł"
-  variants={5}
-  comments={120}
-  realizations={1023}
-  description="Dom parterowy z przestronnym salonem"
-  imageUrl="https://..."
-  onClick={() => console.log('Clicked!')}
-/>
-```
-
-## 📚 Documentation
-
-- **Storybook**: Interaktywna dokumentacja komponentów
-- **Design Tokens**: Wizualna paleta kolorów, typografii, spacingu
-- **Actions**: Testowanie interakcji i eventów
-- **Controls**: Dynamiczne zmiany props w czasie rzeczywistym
-
-## 🛠️ Development
+## 🚀 **Development**
 
 ```bash
 # Install dependencies
@@ -80,75 +53,61 @@ npm install
 # Start Storybook
 npm run storybook
 
-# Build for production
-npm run build
-
-# Run tests
-npm test
+# Build Storybook
+npm run build-storybook
 ```
 
-## 🎭 Available Stories
+## 🎨 **Design Tokens**
 
-- **Design System/PropertyCard** - Główny komponent
-- **Design System/Design Tokens** - Paleta tokenów
-  - Colors - Kolory brand, neutral, semantic
-  - Typography - Skala typograficzna
-  - Spacing - Odstępy i padding
-  - Shadows - Cienie komponentów
-  - Border Radius - Zaokrąglenia
-
-## 🎨 Figma Integration
-
-**Design File**: https://www.figma.com/design/VPq0dOwuuLHG9kLUXgMeJ9/DES_z500?node-id=12-42
-
-Komponenty są pixel-perfect zgodne z designem z Figmy. Wszystkie wartości (kolory, spacing, typography) zostały wyciągnięte bezpośrednio z Figma MCP.
-
-## 🏗️ Architecture
-
-```
-src/
-├── components/          # React components
-│   └── PropertyCard/    # PropertyCard component
-├── tokens/              # Design tokens system
-├── stories/             # Storybook stories
-└── index.ts            # Main exports
-```
-
-## 🎯 Usage Patterns
-
-### Custom Styling z Design Tokens
+All components use consistent design tokens extracted from Figma:
 
 ```css
-.my-component {
-  background: var(--color-primary, #D9308A);
-  padding: var(--spacing-4, 12px);
-  border-radius: var(--radius-md, 8px);
-  box-shadow: var(--shadow-sm, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+:root {
+  /* Colors from Figma */
+  --color-primary: #D9308A;     /* Pink tag */
+  --color-secondary: #1B1B1B;   /* Black tag */
+  --color-neutral: #F4F3EF;     /* Beige tag */
+  
+  /* Typography */
+  --font-family-primary: 'Inter', sans-serif;
+  --font-size-xs: 10px;         /* Stat labels */
+  --font-size-sm: 13px;         /* Stat values */
+  --font-size-base: 14px;       /* Description */
+  --font-size-lg: 18px;         /* Tags */
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
 }
 ```
 
-### TypeScript Integration
+## 📱 **Responsive Design**
 
-```typescript
-import type { PropertyCardProps } from '@z500/property-card-design-system';
+- Mobile-first approach
+- Flexible layouts
+- Touch-friendly interactions
+- Dark mode support
 
-const myProps: PropertyCardProps = {
-  // Full type safety!
-};
-```
+## ♿ **Accessibility**
 
-## 🌟 Best Practices
+- ARIA labels and roles
+- Keyboard navigation
+- Focus management
+- Screen reader support
+- Reduced motion support
 
-1. **Zawsze używaj Design Tokens** - nie hardcoduj wartości
-2. **Testuj w Storybook** - sprawdź wszystkie warianty
-3. **Keyboard accessibility** - wszystkie interakcje dostępne z klawiatury
-4. **Responsive design** - testuj na różnych rozmiarach ekranu
-5. **Performance** - lazy loading obrazów, optymalizowane animacje
+## 🔗 **Links**
 
-## 📝 License
+- **[Live Storybook](https://dobroslawdab.github.io/property-card-design-system/)** 📖
+- **[Figma Design](https://www.figma.com/design/VPq0dOwuuLHG9kLUXgMeJ9/DES_z500?node-id=12-42)** 🎨
+- **[GitHub Repository](https://github.com/dobroslawdab/property-card-design-system)** 📦
 
-MIT © Z500 Design System
+## 📄 **License**
+
+MIT License - feel free to use in your projects!
 
 ---
 
-**Built with ❤️ using Figma MCP, Storybook, and Claude AI**
+Built with ❤️ using pixel-perfect designs from Figma
