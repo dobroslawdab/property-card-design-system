@@ -17,57 +17,62 @@ export interface PropertyCardProps {
 
 export const designTokens = {
   colors: {
-    primary: '#2563eb',
-    primaryHover: '#1d4ed8',
-    secondary: '#64748b',
-    surface: '#ffffff',
-    surfaceHover: '#f8fafc',
-    border: '#e2e8f0',
-    borderHover: '#cbd5e1',
-    text: {
-      primary: '#1e293b',
-      secondary: '#64748b',
-      accent: '#2563eb',
-    },
-  },
-  spacing: {
-    xs: '4px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    xxl: '24px',
+    primary: '#D9308A',      // Różowy tag z Figmy
+    secondary: '#1B1B1B',    // Czarny tag z Figmy  
+    neutral: '#F4F3EF',      // Beżowy tag z Figmy
+    text: '#000000',         // Czarny tekst z Figmy
+    background: '#FFFFFF',   // Białe tło z Figmy
   },
   typography: {
     title: {
+      fontFamily: 'Inter',
+      fontWeight: '700',
       fontSize: '18px',
-      fontWeight: '600',
-      lineHeight: '1.2',
+      lineHeight: '1.21',
+      letterSpacing: '-1.9%',
     },
-    body: {
-      fontSize: '14px',
-      fontWeight: '400',
-      lineHeight: '1.4',
+    area: {
+      fontFamily: 'Inter', 
+      fontWeight: '300',
+      fontSize: '18px',
+      lineHeight: '1.21',
+      letterSpacing: '-1.1%',
     },
-    caption: {
-      fontSize: '12px',
-      fontWeight: '500',
-      lineHeight: '1.3',
+    price: {
+      fontFamily: 'Inter',
+      fontWeight: '300', 
+      fontSize: '18px',
+      lineHeight: '1.21',
+      letterSpacing: '-1.1%',
+    },
+    description: {
+      fontFamily: 'Inter',
+      fontWeight: '300',
+      fontSize: '14px', 
+      lineHeight: '1.21',
+      letterSpacing: '-1.1%',
+    },
+    statLabel: {
+      fontFamily: 'Inter',
+      fontWeight: '300',
+      fontSize: '10px',
+      lineHeight: '1.21', 
+      letterSpacing: '-1.1%',
+    },
+    statValue: {
+      fontFamily: 'Inter',
+      fontWeight: '700',
+      fontSize: '13px',
+      lineHeight: '1.21',
+      letterSpacing: '-1.1%',
     },
   },
-  borderRadius: {
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-  },
-  shadows: {
-    sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-    md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-    lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-  },
-  transitions: {
-    fast: '150ms ease-in-out',
-    normal: '250ms ease-in-out',
+  layout: {
+    width: '368.46px',
+    padding: '12px',
+    gap: '10px',
+    imageHeight: '227px',
+    tagHeight: '40px',
   },
 } as const;
 
@@ -99,6 +104,8 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
 
   const isInteractive = Boolean(onClick);
 
+  const areaText = additionalArea ? `${area}+ ${additionalArea}` : area;
+
   return (
     <div
       className={`property-card ${isInteractive ? 'property-card--interactive' : ''}`}
@@ -109,6 +116,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
       aria-label={isInteractive ? `Zobacz projekt ${title}` : undefined}
       data-testid={`property-card-${id}`}
     >
+      {/* Obraz */}
       <div className="property-card__image-container">
         <img
           src={imageUrl}
@@ -116,37 +124,37 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
           className="property-card__image"
           loading="lazy"
         />
-        <div className="property-card__stats-overlay">
-          <div className="property-card__stat">
-            <span className="property-card__stat-value">{variants}</span>
-            <span className="property-card__stat-label">wariantów</span>
-          </div>
-          <div className="property-card__stat">
-            <span className="property-card__stat-value">{comments}</span>
-            <span className="property-card__stat-label">komentarzy</span>
-          </div>
-          <div className="property-card__stat">
-            <span className="property-card__stat-value">{realizations}</span>
-            <span className="property-card__stat-label">realizacji</span>
-          </div>
+      </div>
+      
+      {/* Tagi poziome */}
+      <div className="property-card__tags">
+        <div className="property-card__tag property-card__tag--primary">
+          <span className="property-card__tag-text">{title}</span>
+        </div>
+        <div className="property-card__tag property-card__tag--secondary">
+          <span className="property-card__tag-text">{areaText}</span>
+        </div>
+        <div className="property-card__tag property-card__tag--neutral">
+          <span className="property-card__tag-text">{price}</span>
         </div>
       </div>
       
-      <div className="property-card__content">
-        <div className="property-card__header">
-          <h3 className="property-card__title">{title}</h3>
-          <div className="property-card__area">
-            {area}
-            {additionalArea && (
-              <span className="property-card__additional-area">+ {additionalArea}</span>
-            )}
-          </div>
+      {/* Opis */}
+      <p className="property-card__description">{description}</p>
+      
+      {/* Statystyki poziome */}
+      <div className="property-card__stats">
+        <div className="property-card__stat-group">
+          <span className="property-card__stat-label">Warianty:</span>
+          <span className="property-card__stat-value">{variants}</span>
         </div>
-        
-        <p className="property-card__description">{description}</p>
-        
-        <div className="property-card__footer">
-          <div className="property-card__price">{price}</div>
+        <div className="property-card__stat-group">
+          <span className="property-card__stat-label">Komentarze:</span>
+          <span className="property-card__stat-value">{comments}</span>
+        </div>
+        <div className="property-card__stat-group">
+          <span className="property-card__stat-label">Realizacje:</span>
+          <span className="property-card__stat-value">{realizations.toLocaleString()}</span>
         </div>
       </div>
     </div>
