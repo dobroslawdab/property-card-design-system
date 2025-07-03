@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { PropertyCard } from './PropertyCard';
 
 const meta = {
@@ -8,7 +9,7 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'PropertyCard komponent wygenerowany z Figma MCP z pixel-perfect precision. Używa prawdziwych wizualizacji 3D z Z500.pl i design tokens extracted bezpośrednio z Figmy.',
+        component: 'PropertyCard komponent pixel-perfect z Figmy. Używa dokładnie tych samych kolorów, typografii i layoutu co design z Figma.',
       },
     },
   },
@@ -16,26 +17,26 @@ const meta = {
   argTypes: {
     title: {
       control: 'text',
-      description: 'Kod projektu domu (np. "Z357 D")',
+      description: 'Kod projektu domu (np. "Z357 Der")',
     },
     area: {
-      control: 'text',
-      description: 'Główna powierzchnia w m²',
+      control: 'text', 
+      description: 'Główna powierzchnia w m² (np. "177")',
     },
     additionalArea: {
       control: 'text',
-      description: 'Dodatkowa powierzchnia (opcjonalna)',
+      description: 'Dodatkowa powierzchnia (np. "34 m²")',
     },
     price: {
       control: 'text',
-      description: 'Cena w PLN',
+      description: 'Cena (np. "650 tys. zł")',
     },
     variants: {
       control: 'number',
       description: 'Liczba dostępnych wariantów',
     },
     comments: {
-      control: 'number',
+      control: 'number', 
       description: 'Liczba komentarzy',
     },
     realizations: {
@@ -60,20 +61,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default story z prawdziwą wizualizacją Z500
+// Default story - dokładnie jak w Figmie
 export const Default: Story = {
   args: {
-    id: 'z357d',
+    id: 'z357der',
     imageUrl: 'https://image.z500.pl/eyJidWNrZXQiOiJ6NTAwLXByb2QiLCJrZXkiOiJpbWFnZXMvcHJvamVjdF92aWV3LzIyNzc3LzE3MjQ5MjU0OTNZNVlTSS5wbmciLCJlZGl0cyI6eyJqcGVnIjp7InF1YWxpdHkiOjgwfSwiZmxhdHRlbiI6eyJiYWNrZ3JvdW5kIjp7InIiOjI1NSwiZyI6MjU1LCJiIjoyNTV9fSwicmVzaXplIjp7IndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODAsImZpdCI6ImNvdmVyIn19fQ==',
-    title: 'Z357 D',
-    area: '177 m²',
+    title: 'Z357 Der',
+    area: '177',
     additionalArea: '34 m²',
     price: '650 tys. zł',
     variants: 5,
     comments: 120,
     realizations: 1023,
-    description: 'Projekt domu Z357 D - Dom parterowy z przestronnym salonem i otwartą kuchnią',
-    onClick: () => console.log('Clicked on Z357 D'),
+    description: 'Projekt domu Z441 D - Dom parterowy z przestronnym salonem i otwartą kuchnią',
+    onClick: action('property-card-clicked'),
   },
 };
 
@@ -81,8 +82,9 @@ export const Default: Story = {
 export const WithoutAdditionalArea: Story = {
   args: {
     ...Default.args,
+    id: 'z442a',
     title: 'Z442 A',
-    area: '165 m²',
+    area: '165',
     additionalArea: undefined,
     price: '580 tys. zł',
     variants: 3,
@@ -90,7 +92,7 @@ export const WithoutAdditionalArea: Story = {
     realizations: 756,
     description: 'Projekt domu Z442 A - Nowoczesny dom z tarasem i dużymi przeszkleniami',
     imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=365&h=227',
-    onClick: () => console.log('Clicked on Z442 A'),
+    onClick: action('property-card-clicked'),
   },
 };
 
@@ -98,8 +100,9 @@ export const WithoutAdditionalArea: Story = {
 export const LuxuryHouse: Story = {
   args: {
     ...Default.args,
+    id: 'z358b',
     title: 'Z358 B',
-    area: '190 m²',
+    area: '190',
     additionalArea: '45 m²',
     price: '850 tys. zł',
     variants: 7,
@@ -107,7 +110,7 @@ export const LuxuryHouse: Story = {
     realizations: 892,
     description: 'Projekt domu Z358 B - Dwukondygnacyjny dom rodzinny z garażem i basenem',
     imageUrl: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=365&h=227',
-    onClick: () => console.log('Clicked on Z358 B'),
+    onClick: action('property-card-clicked'),
   },
 };
 
@@ -115,8 +118,9 @@ export const LuxuryHouse: Story = {
 export const CompactHouse: Story = {
   args: {
     ...Default.args,
+    id: 'z120c',
     title: 'Z120 C',
-    area: '85 m²',
+    area: '85',
     additionalArea: '15 m²',
     price: '420 tys. zł',
     variants: 2,
@@ -124,7 +128,7 @@ export const CompactHouse: Story = {
     realizations: 234,
     description: 'Projekt domu Z120 C - Kompaktowy dom parterowy dla młodej rodziny',
     imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=365&h=227',
-    onClick: () => console.log('Clicked on Z120 C'),
+    onClick: action('property-card-clicked'),
   },
 };
 
@@ -132,8 +136,9 @@ export const CompactHouse: Story = {
 export const PopularProject: Story = {
   args: {
     ...Default.args,
+    id: 'z500a',
     title: 'Z500 A',
-    area: '220 m²',
+    area: '220',
     additionalArea: '55 m²',
     price: '950 tys. zł',
     variants: 12,
@@ -141,7 +146,7 @@ export const PopularProject: Story = {
     realizations: 2156,
     description: 'Projekt domu Z500 A - Najpopularniejszy projekt z naszej oferty, dom z poddaszem użytkowym',
     imageUrl: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=365&h=227',
-    onClick: () => console.log('Clicked on Z500 A'),
+    onClick: action('property-card-clicked'),
   },
 };
 
@@ -155,29 +160,6 @@ export const NonInteractive: Story = {
     docs: {
       description: {
         story: 'Komponent bez interakcji - brak click handlera, hover effects, czy keyboard navigation.',
-      },
-    },
-  },
-};
-
-// Loading state placeholder
-export const LoadingState: Story = {
-  args: {
-    ...Default.args,
-    imageUrl: 'https://via.placeholder.com/365x227/f0f0f0/cccccc?text=Ładowanie...',
-    title: '---',
-    area: '--- m²',
-    price: '--- tys. zł',
-    variants: 0,
-    comments: 0,
-    realizations: 0,
-    description: 'Ładowanie danych projektu...',
-    onClick: undefined,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Stan loading z placeholder image i pustymi danymi.',
       },
     },
   },
